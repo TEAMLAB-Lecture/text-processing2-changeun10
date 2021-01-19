@@ -4,6 +4,12 @@
 
 
 def digits_to_words(input_string):
+    number_list = ['zero','one','two','three','four','five','six','seven','eight','nine']
+    answer=[]
+    for x in input_string:
+        if x.isdigit():
+            answer.append(number_list[int(x)])
+
     """
     인풋으로 받는 스트링에서 숫자만 추출하여 영어 단어로 변환하여 단어들이 연결된 스트링을 반환함
     아래의 요건들을 충족시켜야함
@@ -28,8 +34,7 @@ def digits_to_words(input_string):
             >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
-    digit_string = None
-    return digit_string
+    return ' '.join(answer)
 
 
 """
@@ -41,6 +46,25 @@ def digits_to_words(input_string):
 
 
 def to_camel_case(underscore_str):
+    
+    answer=''
+    if '_' in underscore_str:
+        check=0
+        for x in underscore_str:
+            if x!='_':
+                if answer=='':
+                    answer+=x.lower()
+                else:
+                    if check==0:
+                        answer+=x.lower()
+                    else:
+                        answer+=x.upper()
+                check=0
+            else:
+                check=1
+
+    else:
+        answer = underscore_str
     """
     이 문제에서 첫번째 규칙 'underscore variable' 에서 두번째 규칙 'camelcase variable'으로 변환함
     * 앞과 뒤에 여러개의 'underscore'는 무시해도 된
@@ -64,5 +88,4 @@ def to_camel_case(underscore_str):
             >>> tp2.to_camel_case(underscore_str3)
             "alreadyCamel"
     """
-    camelcase_str = None
-    return camelcase_str
+    return answer
